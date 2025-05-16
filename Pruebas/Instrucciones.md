@@ -27,3 +27,5 @@ A mi me ha dado un error ya que apache se ha instalado pero no se ha iniciado as
 sudo service apache2 start
 ```
 y volveriamos a probar con el comando 'curl localhost' y nos deberia dar el mensaje de: '¡Apache instalado con Ansible!'
+
+Hay que decir que este error se arregla muy facilmente en ansible pero lo cambiaré en la siguiente prueba que voy a hacer ya que voy a intentar integrar variables
