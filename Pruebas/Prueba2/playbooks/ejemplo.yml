@@ -1,0 +1,6 @@
+- name: Playbook de prueba
+  hosts: local
+  tasks:
+    - name: Mostrar mensaje
+      debug:
+        msg: "¡Ansible funciona correctamente!"
