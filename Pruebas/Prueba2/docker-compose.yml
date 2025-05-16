@@ -1,0 +1,8 @@
+services:
+  ansible:
+    build: .
+    container_name: ansible
+    volumes:
+      - ./inventory:/home/ansible/inventory
+      - ./playbooks:/home/ansible/playbooks
+    tty: true
