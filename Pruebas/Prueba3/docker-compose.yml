@@ -1,0 +1,23 @@
+
+services:
+  ansible:
+    build:
+      context: ./ansible
+      dockerfile: Dockerfile
+    container_name: ansible
+    volumes:
+      - .:/ansible
+    tty: true
+
+  web:
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+    container_name: web
+    ports:
+      - "8080:80"
+    volumes:
+      - ./web:/var/www/html
+      - ./ansible:/ansible
+    depends_on:
+      - ansible

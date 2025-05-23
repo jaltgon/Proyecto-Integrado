@@ -1,0 +1,24 @@
+- name: Desplegar sitio web con Apache
+  hosts: localhost
+  become: true
+  vars:
+    web_title: "¡Hola desde Ansible!"
+    web_message: "Esta página fue generada automáticamente con Ansible y un template."
+  tasks:
+    - name: Instalar Apache
+      apt:
+        name: apache2
+        state: present
+        update_cache: yes
+
+    - name: Asegurar que Apache está iniciado
+      service:
+        name: apache2
+        state: started
+        enabled: true
+
+    - name: Crear index.html desde plantilla
+      template:
+        src: templates/index.html.j2
+        dest: /var/www/html/index.html
+        mode: '0644'
