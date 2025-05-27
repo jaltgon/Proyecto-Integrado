@@ -1,0 +1,36 @@
+---
+- name: Gestionar archivos y permisos con copy
+  hosts: all # O un grupo específico como 'webservers' o 'dbservers'
+  become: true # Necesario si copias a rutas que requieren permisos de root (ej: /etc, /var)
+  tasks:
+    - name: Copiar un archivo de configuración desde el controlador a un destino en los hosts
+      ansible.builtin.copy:
+        src: /ruta/en/tu/maquina/local/mi_config.conf # RUTA ABSOLUTA en la máquina de CONTROL de Ansible
+        dest: /etc/mi_aplicacion/config.conf          # RUTA ABSOLUTA en el HOST REMOTO
+        owner: root                                   # Usuario propietario del archivo en el destino
+        group: root                                   # Grupo propietario del archivo en el destino
+        mode: '0644'                                  # Permisos del archivo (octal)
+        # force: yes                                  # (Opcional) Sobrescribe el archivo de destino incluso si los contenidos coinciden. Por defecto es 'yes' si los contenidos difieren.
+        backup: yes                                   # (Opcional) Crea un respaldo del archivo en el destino antes de sobrescribirlo
+        # content: |                                  # (Opcional) Si quieres crear el archivo con contenido directamente, sin un 'src'
+        #   Este es el contenido
+        #   de un archivo generado
+        #   directamente desde el playbook.
+
+    - name: Copiar un script y asegurar que es ejecutable
+      ansible.builtin.copy:
+        src: /ruta/en/tu/maquina/local/mi_script.sh
+        dest: /usr/local/bin/mi_script.sh
+        owner: root
+        group: root
+        mode: '0755' # Permisos para que sea ejecutable (rwxr-xr-x)
+
+    - name: Crear un archivo con contenido directamente (sin un archivo fuente)
+      ansible.builtin.copy:
+        dest: /tmp/mensaje_importante.txt
+        content: |
+          Este es un mensaje de prueba importante.
+          Fue generado directamente por Ansible.
+          ¡Hola desde tu playbook!
+        owner: ansible_user # Usar el usuario con el que te conectas
+        mode: '0600' # Solo lectura/escritura para el propietario

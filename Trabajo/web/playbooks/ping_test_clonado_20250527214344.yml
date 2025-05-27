@@ -1,0 +1,6 @@
+- name: Test connectivity to localhost
+  hosts: local 
+  gather_facts: false # No es necesario para un simple ping
+  tasks:
+    - name: Run a ping test
+      ansible.builtin.ping:
