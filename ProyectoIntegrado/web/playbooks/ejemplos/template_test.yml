@@ -1,0 +1,22 @@
+---
+- name: Demostracion del modulo template
+  hosts: all
+  become: true
+
+  tasks:
+    - name: 1. Generar /etc/motd a partir de una plantilla
+      ansible.builtin.template:
+        src: motd.j2
+        dest: /etc/motd
+        owner: root
+        group: root
+        mode: '0644'
+
+    - name: 2. Mostrar el contenido del nuevo /etc/motd
+      ansible.builtin.command: cat /etc/motd
+      register: motd_content
+      changed_when: false
+
+    - name: 3. Imprimir el contenido de /etc/motd
+      ansible.builtin.debug:
+        msg: "Contenido de /etc/motd:\n{{ motd_content.stdout }}"

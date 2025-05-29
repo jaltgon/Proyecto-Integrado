@@ -1,0 +1,43 @@
+---
+- name: Demostracion de los modulos command y shell
+  hosts: all
+  become: true
+
+  tasks:
+    - name: 1. Ejecutar un comando simple con 'command' (no usa shell)
+      ansible.builtin.command: date
+      register: command_output
+
+    - name: 2. Mostrar la salida del comando simple
+      ansible.builtin.debug:
+        msg: "Salida de 'command date': {{ command_output.stdout }}"
+
+    - name: 3. Intentar un comando complejo con 'command' (fallara si tiene redireccion)
+      ansible.builtin.command: echo "Hola desde command" > /tmp/command_salida.txt
+      register: command_complex_output
+      ignore_errors: true 
+
+    - name: 4. Ejecutar un comando complejo con 'shell' (si usa shell)
+      ansible.builtin.shell: echo "Hola desde shell" > /tmp/shell_salida.txt
+      register: shell_output
+
+    - name: 5. Mostrar la salida de 'shell' y verificar el archivo
+      ansible.builtin.debug:
+        msg: "Contenido de /tmp/shell_salida.txt: {{ lookup('file', '/tmp/shell_salida.txt') }}"
+      delegate_to: localhost 
+      
+    - name: 6. Comprobar permisos del archivo creado por 'shell'
+      ansible.builtin.command: ls -l /tmp/shell_salida.txt
+      register: shell_file_perms
+
+    - name: 7. Mostrar permisos del archivo creado por 'shell'
+      ansible.builtin.debug:
+        msg: "Permisos de /tmp/shell_salida.txt: {{ shell_file_perms.stdout_lines[0] }}"
+
+    - name: 8. Limpiar archivos de prueba
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: absent
+      loop:
+        - /tmp/command_salida.txt
+        - /tmp/shell_salida.txt

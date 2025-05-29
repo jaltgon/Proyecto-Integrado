@@ -1,0 +1,20 @@
+---
+- name: Gestionar paquetes con el modulo package (multi-distro)
+  hosts: all
+  become: true
+
+  tasks:
+    - name: 1. Instalar 'htop' (o asegurar que este presente)
+      ansible.builtin.package:
+        name: htop
+        state: present
+
+    - name: 2. Instalar 'git' (version mas reciente)
+      ansible.builtin.package:
+        name: git
+        state: latest
+
+    - name: 3. Desinstalar 'telnet' (o asegurar que no este presente)
+      ansible.builtin.package:
+        name: telnet
+        state: absent

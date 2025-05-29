@@ -1,0 +1,36 @@
+---
+- name: Gestionar usuarios con el modulo user
+  hosts: all
+  become: true
+
+  tasks:
+    - name: 1. Crear un nuevo usuario de sistema 'devops_user'
+      ansible.builtin.user:
+        name: devops_user
+        comment: "Usuario para tareas de DevOps"
+        uid: 1001
+        group: users
+        groups: sudo,docker
+        shell: /bin/bash
+        home: /home/devops_user
+        state: present
+        create_home: true
+        password: "{{ 'password_secreto' | password_hash('sha512') }}" # Contrasena hasheada
+
+    - name: 2. Asegurar que 'devops_user' sea miembro del grupo 'developers'
+      ansible.builtin.group:
+        name: developers
+        state: present
+
+    - name: 3. Anadir 'devops_user' al grupo 'developers'
+      ansible.builtin.user:
+        name: devops_user
+        groups: developers
+        append: true
+        state: present
+
+    - name: 4. Eliminar el usuario 'old_user' (si existe)
+      ansible.builtin.user:
+        name: old_user
+        state: absent
+        remove: true # Tambien elimina el directorio home

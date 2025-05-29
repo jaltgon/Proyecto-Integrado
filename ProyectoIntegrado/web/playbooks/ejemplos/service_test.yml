@@ -1,0 +1,38 @@
+---
+- name: Gestionar servicios con el módulo service
+  hosts: all
+  become: true
+
+  tasks:
+    - name: 1. Instalar Nginx si no esta presente (Ubuntu/Debian)
+      ansible.builtin.apt:
+        name: nginx
+        state: present
+      when: ansible_os_family == "Debian"
+
+    - name: 2. Instalar Nginx si no esta presente (RedHat/CentOS/Fedora)
+      ansible.builtin.yum:
+        name: nginx
+        state: present
+      when: ansible_os_family == "RedHat"
+
+    - name: 3. Asegurar que el servicio Nginx este iniciado y habilitado al arranque
+      ansible.builtin.service:
+        name: nginx
+        state: started
+        enabled: true
+
+    - name: 4. Reiniciar el servicio Nginx
+      ansible.builtin.service:
+        name: nginx
+        state: restarted
+
+    - name: 5. Parar el servicio Nginx
+      ansible.builtin.service:
+        name: nginx
+        state: stopped
+
+    - name: 6. Deshabilitar el servicio Nginx al arranque
+      ansible.builtin.service:
+        name: nginx
+        enabled: false

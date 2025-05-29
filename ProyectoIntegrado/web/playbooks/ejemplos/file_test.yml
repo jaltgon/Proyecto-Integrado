@@ -1,0 +1,31 @@
+---
+- name: Gestionar archivos y directorios con el módulo file
+  hosts: all
+  become: true
+
+  tasks:
+    - name: 1. Asegurar que el directorio de pruebas exista
+      ansible.builtin.file:
+        path: /tmp/ansible_pruebas
+        state: directory
+        owner: root
+        group: root
+        mode: '0755'
+
+    - name: 2. Crear un archivo de registro vacío en el directorio de pruebas
+      ansible.builtin.file:
+        path: /tmp/ansible_pruebas/log_aplicacion.txt
+        state: touch
+        owner: root
+        group: root
+        mode: '0644'
+
+    - name: 3. Cambiar permisos de un archivo existente (ej. /etc/hosts)
+      ansible.builtin.file:
+        path: /etc/hosts
+        mode: '0600'
+
+    - name: 4. Eliminar un archivo de prueba
+      ansible.builtin.file:
+        path: /tmp/archivo_a_eliminar.txt
+        state: absent

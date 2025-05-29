@@ -1,0 +1,381 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f5f5;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    color: #333;
+}
+
+.container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: auto;
+}
+
+input, select, textarea { /* Quité 'button' de aquí, lo estilaremos individualmente */
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+    font-size: 1em;
+}
+
+/* Estilo para todos los botones, si no se especifica otra clase */
+button, .button { /* Añadido .button para que los enlaces se vean como botones */
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 20px;
+    padding: 10px 20px; /* Asegura padding consistente */
+    text-decoration: none; /* Para enlaces que actúen como botones */
+    display: inline-block; /* Para que padding y margin funcionen en enlaces */
+    font-size: 1em; /* Asegura tamaño de fuente consistente */
+}
+
+button:hover, .button:hover {
+    background-color: #0056b3;
+}
+
+/* Estilo para los botones pequeños (Ejecutar, Ver) */
+.button.small {
+    padding: 5px 10px; /* Menor padding */
+    font-size: 0.85em; /* Menor tamaño de fuente */
+    margin-left: 10px; /* Espacio entre el nombre del playbook y los botones */
+    margin-top: 0; /* Quita el margin-top extra para alinear con el li */
+}
+
+.button.info {
+    background-color: #17a2b8; /* Azul claro */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+}
+.button.info:hover {
+    background-color: #138496;
+}
+
+.button.danger { /* Para el botón Borrar */
+    background-color: #dc3545; /* Rojo */
+}
+.button.danger:hover {
+    background-color: #c82333;
+}
+
+/* Nuevo estilo para el botón Clonar (amarillo) */
+.button.clone {
+    background-color: #ffc107; /* Amarillo */
+    color: #212529; /* Texto oscuro para que contraste bien */
+    border: 1px solid #ffc107;
+}
+
+.button.clone:hover {
+    background-color: #e0a800; /* Amarillo más oscuro al pasar el ratón */
+    border-color: #d39e00;
+}
+
+/* Estilos para el nuevo diseño del formulario de edición */
+.form-actions {
+    margin-top: 20px;
+    display: flex; /* Para alinear los botones y el input */
+    align-items: center;
+    gap: 15px; /* Espacio entre los elementos */
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan en pantallas pequeñas */
+}
+
+.form-actions .button {
+    margin-top: 0; /* Anula el margin-top general del botón */
+}
+
+.save-as-new {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espacio entre el input y el botón "Guardar como Nuevo" */
+    flex-grow: 1; /* Permite que ocupe el espacio disponible */
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan */
+}
+
+.save-as-new input[type="text"] {
+    flex-grow: 1; /* Permite que el input ocupe el espacio disponible */
+    min-width: 200px; /* Ancho mínimo para el input */
+    margin-top: 0; /* Anula el margin-top general del input */
+}
+
+
+
+/* Nuevo estilo para la sección de información general en index.php */
+.general-info-section {
+    background-color: #e6f7ff; /* Un tono de azul muy claro */
+    border: 1px solid #cceeff;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.general-info-section h2 {
+    color: #0056b3; /* Un azul más oscuro */
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.general-info-section p {
+    font-size: 1em;
+    line-height: 1.6;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.explanation-link-container {
+    margin-top: 10px;
+    /* Si el botón es demasiado grande o pequeño, puedes ajustar el padding aquí */
+}
+
+
+/* --- NUEVOS ESTILOS PARA LA SECCIÓN DE EXPLICACIÓN Y YAML --- */
+
+.explanation-section {
+    background-color: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 25px;
+    margin-bottom: 30px; /* Espacio debajo de la sección */
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.05); /* Sombra suave interna */
+}
+
+.explanation-section h2 {
+    color: #2c3e50; /* Color más oscuro para el encabezado de la explicación */
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.explanation-section h3 {
+    color: #34495e;
+    margin-top: 25px;
+    margin-bottom: 15px;
+}
+
+.explanation-section p {
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 15px;
+}
+
+/* Estilo para el mensaje de "llamada a la acción" en las explicaciones */
+.call-to-action {
+    background-color: #e0f2f7; /* Un azul muy claro */
+    border-left: 5px solid #007bff; /* Una barra azul a la izquierda */
+    padding: 15px 20px;
+    margin-top: 25px;
+    border-radius: 4px;
+    font-size: 1.05em;
+    font-weight: bold;
+    color: #333;
+}
+
+.call-to-action a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.call-to-action a:hover {
+    text-decoration: underline;
+}
+
+
+/* Estilo para el bloque de código YAML en la explicación */
+pre.yaml-example {
+    background-color: #e8f0f4; /* Un azul muy claro */
+    border: 1px solid #a7d9ed; /* Borde azul */
+    padding: 15px;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-family: 'Courier New', Courier, monospace;
+    color: #2e4c6c; /* Azul oscuro para el texto */
+    margin-top: 15px;
+    margin-bottom: 20px;
+    font-size: 0.95em;
+}
+
+/* Estilos para mensajes de éxito y error (ya los tenías de antes, asegúrate de que están) */
+.success-message {
+    color: #27ae60;
+    background-color: #e6f7ee;
+    border: 1px solid #27ae60;
+    padding: 10px 15px;
+    border-radius: 6px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.error-message {
+    color: #e74c3c;
+    background-color: #fce6e6;
+    border: 1px solid #e74c3c;
+    padding: 10px 15px;
+    border-radius: 6px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Estilo general para pre (si lo tienes en otros sitios) */
+pre {
+    background-color: #ecf0f1;
+    border: 1px solid #bdc3c7;
+    padding: 15px;
+    border-radius: 6px;
+    overflow-x: auto;
+    overflow-y: auto; /* Para scroll vertical si es muy largo */
+    max-height: 400px; /* Altura máxima para el scroll vertical */
+    font-family: 'Courier New', Courier, monospace;
+    color: #34495e;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* Estilo para la lista de playbooks */
+.playbook-list {
+    list-style: none; /* Quita los puntos de la lista */
+    padding: 0;
+    margin-top: 15px;
+}
+
+.playbook-list li {
+    background-color: #f0f0f0;
+    border: 1px solid #e0e0e0;
+    padding: 10px 15px;
+    margin-bottom: 8px;
+    border-radius: 5px;
+    display: flex; /* Para alinear el texto y los botones */
+    align-items: center;
+    justify-content: space-between; /* Espacia el nombre y los botones */
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan en pantallas pequeñas */
+}
+
+.playbook-list li a.button {
+    margin-left: 10px; /* Espacio entre los botones */
+}
+
+/* Nuevo estilo para el editor de código (textarea) */
+textarea.code-editor {
+    width: 100%;
+    /* Altura que se ajusta automáticamente al contenido */
+    height: auto;
+    min-height: 300px; /* Altura mínima */
+    resize: vertical; /* Permite redimensionar verticalmente */
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.9em;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: #fcfcfc;
+    color: #333;
+    line-height: 1.5; /* Espaciado entre líneas */
+    box-sizing: border-box; /* Asegura que padding no aumenta el ancho total */
+}
+
+/* Estilo para bloques de código YAML en explicacion_ansible.php y otros lugares */
+.yaml-example {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 15px;
+    border-radius: 6px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.9em;
+    overflow-x: auto; /* Permite scroll horizontal */
+    white-space: pre-wrap; /* Mantiene formato y permite que se envuelva */
+    line-height: 1.4;
+    color: #333;
+    margin: 20px 0;
+}
+
+.yaml-example code {
+    display: block; /* Asegura que el contenido se comporte como un bloque */
+}
+
+.detailed-explanation ul { /* Ajustes para las listas si no los tenías */
+    list-style: disc;
+    margin-left: 25px;
+    margin-bottom: 15px;
+}
+
+.detailed-explanation ul li {
+    margin-bottom: 5px;
+}
+
+.detailed-explanation ul li b {
+    color: #5a5a5a;
+}
+
+/* Estilos para el área de texto del inventario */
+.full-width-textarea {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box; /* Incluye padding en el width */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.9em;
+    margin-bottom: 20px;
+}
+
+/* Estilo para los grupos de botones, si no lo tienes */
+.button-group {
+    display: flex;
+    gap: 10px; /* Espacio entre botones */
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
+
+/* Estilo para la línea divisoria */
+.separator {
+    border: 0;
+    height: 1px;
+    background: #ccc;
+    margin: 30px 0;
+}
+
+/* Puedes añadir estilos específicos para .explanation-section si quieres */
+.explanation-section {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #eee; /* Opcional, para un borde superior ligero */
+}
+
+        .task-list {
+            list-style: none;
+            padding: 0;
+        }
+        .task-list li {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 10px 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+        .task-params {
+            background-color: #e8e8e8;
+            padding: 8px;
+            border-radius: 3px;
+            white-space: pre-wrap; /* Permite saltos de línea y conserva espacios */
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.85em;
+            margin-top: 5px;
+            overflow-x: auto; /* Para scroll horizontal si es muy largo */
+        }
+        .add-task-form {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }

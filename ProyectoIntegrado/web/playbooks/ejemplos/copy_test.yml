@@ -1,0 +1,36 @@
+---
+- name: Gestionar archivos en hosts remotos con copy
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Crear un archivo de aviso en /tmp
+      ansible.builtin.copy:
+        dest: /tmp/mensaje_ansible.txt
+        content: |
+          Este es un archivo de prueba.
+          Generado por Ansible el: {{ ansible_date_time.date }}.
+        owner: root
+        group: root
+        mode: '0644'
+
+    - name: Copiar un script de limpieza desde el controlador
+      ansible.builtin.copy:
+        src: /tmp/clean_temp_files.sh
+        dest: /usr/local/bin/clean_temp_files.sh
+        owner: root
+        group: root
+        mode: '0755'
+        backup: yes
+      when: ansible_os_family != "Windows"
+
+    - name: Verificar el script copiado
+      ansible.builtin.command: ls -l /usr/local/bin/clean_temp_files.sh
+      register: script_check_output
+      changed_when: false
+      when: ansible_os_family != "Windows"
+
+    - name: Informar de la ruta y permisos del script copiado
+      ansible.builtin.debug:
+        msg: "El script 'clean_temp_files.sh' se copió a {{ script_check_output.stdout_lines[0] }}"
+      when: ansible_os_family != "Windows"
