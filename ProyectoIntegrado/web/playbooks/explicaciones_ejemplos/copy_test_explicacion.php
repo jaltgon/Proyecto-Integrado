@@ -1,10 +1,3 @@
-¡Entendido! Mis más sinceras disculpas de nuevo por el error persistente con <strong>. Lo arreglo ahora mismo. Aquí tienes la versión corregida de la explicación para explicacion_copy_module.php, usando <strong> en lugar de **.
-
-Contenido Corregido para explicacion_copy_module.php
-Por favor, reemplaza todo el contenido de tu archivo explicacion_copy_module.php con el siguiente:
-
-PHP
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
